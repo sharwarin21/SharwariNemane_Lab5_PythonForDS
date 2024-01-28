@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: whitesmoke;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        h1,
+        h3 {
+            color: rgb(0, 20, 160);
+        }
+
+        #main {
+            width: 500px;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid rgb(0, 20, 160);
+            font-weight: bold;
+        }
+
+        input:focus-within {
+            background-color: rgb(191, 222, 255);
+        }
+
+        select {
+            background-color: rgb(191, 222, 255);
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(56, 86, 255);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(0, 20, 160);
+        }
+
+        #predict {
+            margin-top: 5%;
+            width: 100%;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        label {
+            color: rgb(0, 0, 128);
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="main">
+    <h1>Enter Car Details</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" label="Name" name="Name" placeholder="Car Name" required>
+        <input type="number" label='age_of_the_car' name="age_of_the_car" placeholder="Age of the Car (Years)" required>
+        <input type="number" label='Present_Price' name="Present_Price" placeholder="Present Price (In Lakhs)"
+               step="0.01" required>
+        <input type="number" label='Kms_Driven' name="Kms_Driven" placeholder="Kms Driven" required>
+        <select name="Fuel_Type" id="Fuel_Type" required>
+            <option value="2">Petrol</option>
+            <option value="1">Diesel</option>
+            <option value="0">CNG</option>
+        </select>
+        <select name="Transmission" id="research" required="required">
+            <option value="1">Manual</option>
+            <option value="0">Automatic</option>
+        </select>
+        </br>
+        </br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<div id="predict">{{prediction_text}}</div>
+</body>
+
+</html>
